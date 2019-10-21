@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorOrange"
+    tools:context=".MainActivity"
+    android:orientation="vertical">
+
+    <include
+        layout="@layout/toolbar_main"
+        android:id="@+id/toolbar"/>
+
+    <TextView
+        android:id="@+id/textViewTimer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/init_time"
+        android:textAppearance="@android:style/TextAppearance.Large"
+        android:textSize="54sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <Button
+            android:id="@+id/button_reset"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="10dp"
+            android:background="@color/colorOrange"
+            android:drawableStart="@drawable/ic_reset_48dp"
+            android:onClick="onClickResetTimer"
+            android:text="@string/button_reset"
+            android:textColor="@color/colorReset"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="@+id/imageViewSettings"
+            app:layout_constraintTop_toBottomOf="@+id/toggle_button_start_pause" />
+
+        <ToggleButton
+            android:id="@+id/toggle_button_start_pause"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:background="@color/colorOrange"
+            android:onClick="onClickStartPauseTimer"
+            android:textColor="@color/colorGreen"
+            android:textOff="@string/button_start"
+            android:textOn="@string/button_pause"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintTop_toBottomOf="@+id/textViewTimer" />
+    </LinearLayout>
+
+    <ImageView
+        android:id="@+id/imageViewSettings"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="onClickOpenSettings"
+        app:srcCompat="@drawable/ic_settings_white_48dp"
+        android:contentDescription="@string/button_settings" />
+
+    <TextView
+        android:id="@+id/textViewSettingsInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageViewSettings"
+        app:layout_constraintTop_toBottomOf="@+id/button_reset" />
+
+</LinearLayout>
