@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private ToggleButton toggleButtonStartPause;
     private Button buttonReset;
     private boolean mute = false;
+    private boolean lock = false;
 
     private static int nstart = 0; // число нажатий на старт
 
@@ -196,6 +196,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onClickOpenSettings(View view) {
+        if (lock) return;
         Intent intent = new Intent(this, SettingsActivity.class);
         intent.putExtra(SWBACKGROUND, !background_running);
         intent.putExtra(SWPAUSE, !paused_running);
@@ -214,6 +215,15 @@ public class MainActivity extends AppCompatActivity {
     public void onClickStartPauseTimer(View view) {
 
         boolean on = toggleButtonStartPause.isChecked();
+        if (lock) {
+            //TODO проблема лишнего нажатия на кнопку при запуск->блокировка->пауза->снятиеблокировки->"!старт
+            if (on) {
+                toggleButtonStartPause.setText(getString(R.string.remove_lock));
+            } else {
+                toggleButtonStartPause.setText(getString(R.string.remove_lock));
+            }
+            return;
+        }
         if (on) {
             // Вкл
             if (!mute) startSound.start();
@@ -232,6 +242,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickResetTimer(View view) {
+        if (lock) return;
         isRunning = false;
         if (!mute) resetSound.start();
         seconds = 0;
@@ -286,15 +297,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickVolumeUpOff(View view) {
+        if (lock) return;
         ImageView imageView = (ImageView) view;
         if (mute) {
             imageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_volume_up_white_48dp));
             showToast(getString(R.string.volume_on));
             mute = false;
         } else {
-            imageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_volume_off_white_48dp));
+            imageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_volume_off_red_48dp));
             showToast(getString(R.string.volume_off));
             mute = true;
+        }
+    }
+
+    public void onClickLockUnlock(View view) {
+        ImageView imageView = (ImageView) view;
+        if (lock) {
+            imageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_lock_open_green_48dp));
+            showToast(getString(R.string.unlock));
+            lock = false;
+        } else {
+            imageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_lock_red_48dp));
+            showToast(getString(R.string.lock));
+            lock = true;
         }
     }
 }

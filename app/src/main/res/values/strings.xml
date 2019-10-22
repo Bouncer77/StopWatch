@@ -47,6 +47,8 @@
     <string name="tag_supreme_master">Supreme master</string>
     <string name="tag_wise_consul">Wise consul</string>
     <string name="tag_famous_hero">Famous hero</string>
+    <string name="lock">lock</string>
+    <string name="unlock">unlock</string>
     
     
     <string name="illuminati" translatable="false">Marina Fox</string>
@@ -55,6 +57,8 @@
     <string name="supreme_master" translatable="false"> </string>
     <string name="wise_consul" translatable="false"> </string>
     <string name="famous_hero" translatable="false"> </string>
+    
+    <string name="remove_lock">Remove the lock</string>
 
 
 

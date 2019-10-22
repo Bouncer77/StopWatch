@@ -37,4 +37,7 @@
     <string name="tag_famous_hero">Известный герой</string>
     <string name="tag_supreme_master">Верховный магистр</string>
     <string name="tag_wise_consul">Мудрый консул</string>
+    <string name="lock">Запереть</string>
+    <string name="unlock">Отпереть</string>
+    <string name="remove_lock">Снимите замок</string>
 </resources>

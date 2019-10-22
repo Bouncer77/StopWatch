@@ -73,6 +73,15 @@
             app:srcCompat="@drawable/ic_volume_up_white_48dp" />
 
         <ImageView
+            android:id="@+id/imageViewLock"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/lock"
+            android:onClick="onClickLockUnlock"
+            app:srcCompat="@drawable/ic_lock_open_green_48dp" />
+
+        <ImageView
             android:id="@+id/imageViewSettings"
             android:layout_weight="1"
             android:layout_width="wrap_content"
