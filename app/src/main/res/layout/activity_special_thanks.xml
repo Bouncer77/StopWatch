@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorOrange"
+    tools:context=".SpecialThanksActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/toolbar_main"
+            android:id="@+id/toolbar"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:gravity="center"
+            android:textColor="@color/colorDark"
+            android:text="@string/thanks_support"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:background="@color/colorViolet"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="@color/colorDark"
+            android:padding="10dp"
+            android:text="@string/tag_illuminati" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/illuminati"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:background="@color/colorBlue"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="@color/colorDark"
+            android:padding="10dp"
+            android:text="@string/tag_spiritual_mentor" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/spiritual_mentor"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:background="@color/colorGold"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="@color/colorDark"
+            android:padding="10dp"
+            android:text="@string/tag_investor" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/investor"/>
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:background="@color/colorRed"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="@color/colorDark"
+            android:padding="10dp"
+            android:text="@string/tag_supreme_master" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/supreme_master"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:background="@color/colorGreen"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="@color/colorDark"
+            android:padding="10dp"
+            android:text="@string/tag_wise_consul" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/wise_consul"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="start"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="@color/colorDark"
+            android:padding="10dp"
+            android:text="@string/tag_famous_hero" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="@string/famous_hero"/>
+    </LinearLayout>
+
+
+</ScrollView>

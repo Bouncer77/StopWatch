@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
     <color name="colorGreen">#1B5E20</color>
+    <color name="colorLightGreen">#8BC34A</color>
     <color name="colorRed">#B71C1C</color>
     <color name="colorOrange">#FF9800</color>
     <color name="colorGold">#FFEB3B</color>
@@ -12,6 +13,7 @@
     <color name="colorDark">#000000</color>
     <color name="colorLightDark">#222221</color>
     <color name="colorCopyright">#DAE9BA83</color>
+    <color name="colorBlue">#00BCD4</color>
 
     <color name="light_font">#FBFBFB</color>
     <color name="grey_font">#ff9e9e9e</color>

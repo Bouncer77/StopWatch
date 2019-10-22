@@ -30,4 +30,11 @@
     <string name="feedback">Обратная связь</string>
     <string name="special_thanks">Особая благодарность</string>
     <string name="version">Версия: 1.0.0</string>
+    <string name="tag_illuminati">Иллюминат</string>
+    <string name="tag_investor">Инвестр</string>
+    <string name="tag_spiritual_mentor">Духовный наставник</string>
+    <string name="thanks_support">Спасибо за поддержку</string>
+    <string name="tag_famous_hero">Известный герой</string>
+    <string name="tag_supreme_master">Верховный магистр</string>
+    <string name="tag_wise_consul">Мудрый консул</string>
 </resources>

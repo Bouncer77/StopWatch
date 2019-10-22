@@ -38,6 +38,24 @@
     <string name="donate">Donate</string>
     <string name="copyright" translatable="false">Copyright © 2019 Bouncer77</string>
     <string name="version">Version: 1.0.0</string>
+    
+    <string name="thanks_support">Thanks for the support</string>
+
+    <string name="tag_illuminati">Illuminati</string>
+    <string name="tag_spiritual_mentor">Spiritual mentor</string>
+    <string name="tag_investor">Investor</string>
+    <string name="tag_supreme_master">Supreme master</string>
+    <string name="tag_wise_consul">Wise consul</string>
+    <string name="tag_famous_hero">Famous hero</string>
+    
+    
+    <string name="illuminati" translatable="false">Marina Fox</string>
+    <string name="spiritual_mentor" translatable="false">Natalia Journal</string>
+    <string name="investor" translatable="false">Igor Moscow77777</string>
+    <string name="supreme_master" translatable="false"> </string>
+    <string name="wise_consul" translatable="false"> </string>
+    <string name="famous_hero" translatable="false"> </string>
+
 
 
     <string-array name="spiner_select_language">

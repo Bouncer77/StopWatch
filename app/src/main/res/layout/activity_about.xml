@@ -46,6 +46,7 @@
         android:layout_marginEnd="@dimen/activity_horizontal_margin"
         android:text="@string/special_thanks"
         android:background="@color/colorViolet"
+        android:onClick="onClickShowThanksActivity"
         android:textStyle="bold"/>
 
     <Button
