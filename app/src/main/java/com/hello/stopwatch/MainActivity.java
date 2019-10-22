@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
     /*секундомер останавливается, если приложе-
       ние Stopwatch становится невидимым, и снова запускается,
       когда приложение снова оказывается на экране.*/
+    public String lang = "en";
     public boolean background_running = true;
     public boolean paused_running = true;
     public boolean show_milliseconds = true;
@@ -59,12 +60,35 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
+        // Метод не требует писать: if (savedInstanceState != null) {...}
         // Получить предыдущее состояние секундомера,
         // если активность была уничтожена из-за поворота экрана и создана заново.
         seconds = savedInstanceState.getInt(SEC);
         milliseconds_timer = savedInstanceState.getInt(MSEC);
         isRunning = savedInstanceState.getBoolean(ISRUN);
         wasRunning = savedInstanceState.getBoolean(WASRUN);
+    }
+
+    protected void onRestoreExtrasSettings(Bundle bundle) {
+        if (bundle != null) {
+            background_running = (boolean) bundle.getBoolean(SWBACKGROUND, true);
+            paused_running = (boolean) bundle.getBoolean(SWPAUSE, true);
+            show_milliseconds = (boolean) bundle.getBoolean(SWMILLISECONDS, true);
+            milliseconds_delta = (int) bundle.getInt(NUMMILLISEC, 125);
+            spinnerlang = (int) bundle.getInt(LANGINT, 0);
+            lang = bundle.getString(LANG);
+            if (lang == null) lang = "English";
+        }
+    }
+
+    protected String createSettingsInfo() {
+
+        String info = Boolean.toString(background_running) + "   " +
+                Boolean.toString(paused_running) + "   " +
+                Boolean.toString(show_milliseconds) + "   " +
+                Integer.toString(milliseconds_delta) + "   " +
+                lang + "   " + getVersion();
+        return info;
     }
 
     @Override
@@ -76,60 +100,31 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        // MediaPlayer
         startSound = MediaPlayer.create(this, R.raw.start);
         pauseSound = MediaPlayer.create(this, R.raw.pause);
         resetSound = MediaPlayer.create(this, R.raw.reset);
 
-
-
-        textViewTimer = findViewById(R.id.textViewTimer);
+        // Получить элементы View
+        textViewTimer = (TextView) findViewById(R.id.textViewTimer);
         toggleButtonStartPause = (ToggleButton) findViewById(R.id.toggle_button_start_pause);
         buttonReset = (Button) findViewById(R.id.button_reset);
+        textViewSettingsInfo = (TextView) findViewById(R.id.textViewSettingsInfo);
 
-        textViewSettingsInfo = findViewById(R.id.textViewSettingsInfo);
+        // Получение интента с настройками
+        Bundle extrasSettings = getIntent().getExtras(); // из активности настройки
+        onRestoreExtrasSettings(extrasSettings);
 
-        Intent intent = getIntent();
-        background_running = (boolean) intent.getBooleanExtra(SWBACKGROUND, true);
-        paused_running = (boolean) intent.getBooleanExtra(SWPAUSE, true);
-        show_milliseconds = (boolean) intent.getBooleanExtra(SWMILLISECONDS, true);
-        milliseconds_delta = (int) intent.getIntExtra(NUMMILLISEC, 125);
-        spinnerlang = (int) intent.getIntExtra(LANGINT, 0);
-        String lang = intent.getStringExtra(LANG);
-        if (lang == null) lang = "en";
-        //if (!language.equals(lang)) this.setLocale(lang);
-
-        String settingsInfo = Boolean.toString(background_running) + "   " +
-                Boolean.toString(paused_running) + "   " +
-                Boolean.toString(show_milliseconds) + "   " +
-                Integer.toString(milliseconds_delta) + "   " +
-                language + "   " + lang;
+        // Вывод информации о настройках
+        String settingsInfo = createSettingsInfo();
         textViewSettingsInfo.setText(settingsInfo);
 
+        // При первом запуске отрисовка иконки на кнопке Start
+        if(nstart == 0) toggleButtonStartPause.setButtonDrawable(R.drawable.ic_play_48dp);
 
-        if(nstart == 0) {
-            toggleButtonStartPause.setButtonDrawable(R.drawable.ic_play_48dp);
-        }
-
-
-        //boolean isChecked = getIntent().getBooleanExtra("switch", false);
-
-
+        // Обновление секундомера
         runTimer();
     }
-
-
-    // Почему-то так не рекомендовано делать
-    /*public void setLocale(String lang) {
-        language = lang;
-        myLocale = new Locale(lang);
-        Resources res = getResources();
-        DisplayMetrics dm = res.getDisplayMetrics();
-        Configuration conf = res.getConfiguration();
-        conf.locale = myLocale;
-        res.updateConfiguration(conf, dm);
-        Intent refresh = new Intent(this, MainActivity.class);
-        startActivity(refresh);
-    }*/
 
     // Сохранить состояние секундомера,
     //если он готовится к уничтожению.
@@ -142,22 +137,12 @@ public class MainActivity extends AppCompatActivity {
         outState.putBoolean(WASRUN, wasRunning);
     }
 
-    public void onClickStartTimer(View view) {
-        isRunning = true;
-        showToast(getString(R.string.button_start));
-    }
-
-    public void onClickPauseTimer(View view) {
-
-        isRunning = false;
-        showToast(getString(R.string.button_pause));
-    }
-
     // Обновление показателей таймера
     // Метод runTimer() использует объект Handler
     //для увеличения числа секунд и обновления надписи
     private void runTimer(){
 
+        //final TextView timeView = (TextView)findViewById(R.id.time_view);
         final Handler handler = new Handler();
         handler.post(new Runnable() {
             @Override
@@ -189,42 +174,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    @Override
-    protected void onStart(){
-        super.onStart();
 
-        if (background_running) return;
-
-        if (wasRunning) {
-            isRunning = true;
-            wasRunning = false;
-        }
-    }
-
-    // Если активность свернута,
-    // остановить отсчет времени (при backgroun_running == false)
-    // включенный Switch номер 1 (по умолчанию выключен)
-    @Override
-    protected void onStop(){
-        super.onStop();
-
-        if (background_running) return;
-
-        wasRunning = isRunning;
-        isRunning = false;
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-
-        if (paused_running) return;
-
-        if (wasRunning) {
-            isRunning = true;
-            wasRunning = false;
-        }
-    }
 
     // Если активность приостанавливается,
     //остановить отсчет времени (при paused_running == false)
@@ -238,8 +188,6 @@ public class MainActivity extends AppCompatActivity {
         wasRunning = isRunning;
         isRunning = false;
     }
-
-
 
 
     public void onClickOpenSettings(View view) {
@@ -291,7 +239,44 @@ public class MainActivity extends AppCompatActivity {
         toggleButtonStartPause.setTextColor(getResources().getColor(R.color.colorGreen));
     }
 
-    public String getVERSION() {
+    public String getVersion() {
         return VERSION;
+    }
+
+    @Override
+    protected void onStart(){
+        super.onStart();
+
+        if (background_running) return;
+
+        if (wasRunning) {
+            isRunning = true;
+            wasRunning = false;
+        }
+    }
+
+    // Если активность свернута,
+    // остановить отсчет времени (при backgroun_running == false)
+    // включенный Switch номер 1 (по умолчанию выключен)
+    @Override
+    protected void onStop(){
+        super.onStop();
+
+        if (background_running) return;
+
+        wasRunning = isRunning;
+        isRunning = false;
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if (paused_running) return;
+
+        if (wasRunning) {
+            isRunning = true;
+            wasRunning = false;
+        }
     }
 }
