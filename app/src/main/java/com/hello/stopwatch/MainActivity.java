@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -30,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     private int spinnerlang = 0; // TODO написать номер языка в спинере настроки
     private ToggleButton toggleButtonStartPause;
     private Button buttonReset;
+    private boolean mute = false;
+
     private static int nstart = 0; // число нажатий на старт
 
     private MediaPlayer startSound, pauseSound, resetSound;
@@ -110,6 +114,7 @@ public class MainActivity extends AppCompatActivity {
         toggleButtonStartPause = (ToggleButton) findViewById(R.id.toggle_button_start_pause);
         buttonReset = (Button) findViewById(R.id.button_reset);
         textViewSettingsInfo = (TextView) findViewById(R.id.textViewSettingsInfo);
+
 
         // Получение интента с настройками
         Bundle extrasSettings = getIntent().getExtras(); // из активности настройки
@@ -211,14 +216,14 @@ public class MainActivity extends AppCompatActivity {
         boolean on = toggleButtonStartPause.isChecked();
         if (on) {
             // Вкл
-            startSound.start();
+            if (!mute) startSound.start();
             toggleButtonStartPause.setButtonDrawable(R.drawable.ic_pause_48dp);
             toggleButtonStartPause.setTextColor(getResources().getColor(R.color.colorRed));
             isRunning = true;
             showToast(getString(R.string.button_start));
         } else {
             // Выкл
-            pauseSound.start();
+            if (!mute) pauseSound.start();
             toggleButtonStartPause.setButtonDrawable(R.drawable.ic_play_48dp);
             toggleButtonStartPause.setTextColor(getResources().getColor(R.color.colorGreen));
             isRunning = false;
@@ -228,7 +233,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickResetTimer(View view) {
         isRunning = false;
-        resetSound.start();
+        if (!mute) resetSound.start();
         seconds = 0;
         milliseconds_timer = 0;
         showToast(getString(R.string.button_reset));
@@ -277,6 +282,19 @@ public class MainActivity extends AppCompatActivity {
         if (wasRunning) {
             isRunning = true;
             wasRunning = false;
+        }
+    }
+
+    public void onClickVolumeUpOff(View view) {
+        ImageView imageView = (ImageView) view;
+        if (mute) {
+            imageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_volume_up_white_48dp));
+            showToast(getString(R.string.volume_on));
+            mute = false;
+        } else {
+            imageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_volume_off_white_48dp));
+            showToast(getString(R.string.volume_off));
+            mute = true;
         }
     }
 }

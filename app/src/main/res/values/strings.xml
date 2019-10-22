@@ -29,6 +29,9 @@
 
     <string name="settings_choser_title">Send message via ...</string>
 
+    <string name="volume_off">Mute</string>
+    <string name="volume_on">Unmute</string>
+
 
     <string-array name="spiner_select_language">
         <item>@string/lang_en</item>

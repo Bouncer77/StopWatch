@@ -21,6 +21,7 @@
         android:text="@string/init_time"
         android:textAppearance="@android:style/TextAppearance.Large"
         android:textSize="54sp"
+        android:layout_weight="2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +31,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_weight="1">
+        android:layout_weight="5">
 
         <Button
             android:id="@+id/button_reset"
@@ -64,13 +65,31 @@
             app:layout_constraintTop_toBottomOf="@+id/textViewTimer" />
     </LinearLayout>
 
-    <ImageView
-        android:id="@+id/imageViewSettings"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:onClick="onClickOpenSettings"
-        app:srcCompat="@drawable/ic_settings_white_48dp"
-        android:contentDescription="@string/button_settings" />
+        android:orientation="horizontal"
+        android:layout_weight="1">
+
+        <ImageView
+            android:id="@+id/imageViewVolume"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/button_settings"
+            android:onClick="onClickVolumeUpOff"
+            app:srcCompat="@drawable/ic_volume_up_white_48dp" />
+
+        <ImageView
+            android:id="@+id/imageViewSettings"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/button_settings"
+            android:onClick="onClickOpenSettings"
+            app:srcCompat="@drawable/ic_settings_white_48dp" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/textViewSettingsInfo"
