@@ -1,6 +1,7 @@
 package com.hello.stopwatch;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -124,5 +125,10 @@ public class SettingsActivity extends AppCompatActivity {
         int duraction = Toast.LENGTH_LONG;
         Toast toast = Toast.makeText(this, text, duraction);
         toast.show();
+    }
+
+    public void onClickSendFeedback(View view) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(getString(R.string.feedback_url)));
+        startActivity(intent);
     }
 }

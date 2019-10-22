@@ -91,7 +91,7 @@
             android:id="@+id/button"
             android:layout_marginStart="@dimen/activity_horizontal_margin"
             android:layout_marginEnd="@dimen/activity_horizontal_margin"
-            android:background="@color/colorOrange"
+            android:background="@color/colorGreen"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:onClick="onClickApplySettings"
@@ -141,6 +141,17 @@
                 android:onClick="onClickShare"
                 app:srcCompat="@drawable/baseline_share_24" />
         </LinearLayout>
+
+        <Button
+            android:id="@+id/buttonFeedback"
+            android:layout_marginStart="@dimen/activity_horizontal_margin"
+            android:layout_marginEnd="@dimen/activity_horizontal_margin"
+            android:background="@color/colorRed"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClickSendFeedback"
+            android:textStyle="bold"
+            android:text="@string/feedback" />
 
     </LinearLayout>
 

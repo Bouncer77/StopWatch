@@ -36,7 +36,7 @@
         <Button
             android:id="@+id/button_reset"
             android:layout_weight="1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:background="@color/colorOrange"
@@ -51,7 +51,7 @@
 
         <ToggleButton
             android:id="@+id/toggle_button_start_pause"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:layout_margin="10dp"
@@ -79,6 +79,15 @@
             android:contentDescription="@string/button_settings"
             android:onClick="onClickVolumeUpOff"
             app:srcCompat="@drawable/ic_volume_up_white_48dp" />
+
+        <ImageView
+            android:id="@+id/imageViewLock"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/lock"
+            android:onClick="onClickLockUnlock"
+            app:srcCompat="@drawable/ic_lock_open_green_48dp" />
 
         <ImageView
             android:id="@+id/imageViewSettings"
