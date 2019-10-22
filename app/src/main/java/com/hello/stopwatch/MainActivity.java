@@ -20,6 +20,10 @@ import static java.util.Locale.getDefault;
 
 public class MainActivity extends AppCompatActivity {
 
+    // Последовательность чисел
+    // Первое из них — старшая версия (major), второе — младшая (minor), третья — мелкие изменения (maintenance, micro).
+    private static final String VERSION = "v0.1.0";
+
     private TextView textViewTimer;
     private TextView textViewSettingsInfo;
     private String language  = Locale.getDefault().getDisplayLanguage();; // your language
@@ -51,6 +55,17 @@ public class MainActivity extends AppCompatActivity {
     public static final String WASRUN = "wasRunning"; // флаг отсчета времени до приостановки активности
     public static final String SEC = "seconds";
     public static final String MSEC = "milliseconds";
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        // Получить предыдущее состояние секундомера,
+        // если активность была уничтожена из-за поворота экрана и создана заново.
+        seconds = savedInstanceState.getInt(SEC);
+        milliseconds_timer = savedInstanceState.getInt(MSEC);
+        isRunning = savedInstanceState.getBoolean(ISRUN);
+        wasRunning = savedInstanceState.getBoolean(WASRUN);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,16 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
         //boolean isChecked = getIntent().getBooleanExtra("switch", false);
 
-        // Получить предыдущее со-
-        //стояние секундомера, если
-        //активность была уничто-
-        //жена и создана заново.
-        if (savedInstanceState != null) {
-            seconds = savedInstanceState.getInt(SEC);
-            milliseconds_timer = savedInstanceState.getInt(MSEC);
-            isRunning = savedInstanceState.getBoolean(ISRUN);
-            wasRunning = savedInstanceState.getBoolean(WASRUN);
-        }
+
         runTimer();
     }
 
@@ -283,5 +289,9 @@ public class MainActivity extends AppCompatActivity {
         toggleButtonStartPause.setChecked(false);
         toggleButtonStartPause.setButtonDrawable(R.drawable.ic_play_48dp);
         toggleButtonStartPause.setTextColor(getResources().getColor(R.color.colorGreen));
+    }
+
+    public String getVERSION() {
+        return VERSION;
     }
 }

@@ -29,6 +29,10 @@ public class SettingsActivity extends AppCompatActivity {
     private EditText numMilliseconds;
     public static final String NUMMILLISEC = "numMilliseconds";
 
+    public static String getSWPAUSE() {
+        return SWPAUSE;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
