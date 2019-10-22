@@ -244,7 +244,7 @@ public class MainActivity extends AppCompatActivity {
         toggleButtonStartPause.setTextColor(getResources().getColor(R.color.colorGreen));
     }
 
-    public String getVersion() {
+    public static String getVersion() {
         return VERSION;
     }
 
