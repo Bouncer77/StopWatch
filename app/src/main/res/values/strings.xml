@@ -32,6 +32,13 @@
     <string name="volume_off">Mute</string>
     <string name="volume_on">Unmute</string>
 
+    <string name="about_autor">Developed by:\nKosenkov Ivan</string>
+    <string name="special_thanks">Special thanks</string>
+    <string name="feedback">Feedback</string>
+    <string name="donate">Donate</string>
+    <string name="copyright" translatable="false">Copyright © 2019 Bouncer77</string>
+    <string name="version">Version: 1.0.0</string>
+
 
     <string-array name="spiner_select_language">
         <item>@string/lang_en</item>

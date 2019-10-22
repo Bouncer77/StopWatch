@@ -9,6 +9,65 @@
     android:orientation="vertical"
     tools:context=".AboutActivity">
 
+    <include
+        layout="@layout/toolbar_main"
+        android:id="@+id/toolbar"/>
 
+    <ImageView
+        android:id="@+id/textViewIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:contentDescription="@string/app_name"
+        app:srcCompat="@drawable/ic_first_launcher" />
+
+    <TextView
+        android:id="@+id/textViewVersion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:text="@string/version" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:text="@string/about_autor"/>
+    <Button
+        android:id="@+id/buttonThanks"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:text="@string/special_thanks"
+        android:background="@color/colorViolet"
+        android:textStyle="bold"/>
+
+    <Button
+        android:id="@+id/buttonDonate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:layout_marginStart="@dimen/activity_horizontal_margin"
+        android:layout_marginEnd="@dimen/activity_horizontal_margin"
+        android:text="@string/donate"
+        android:background="@color/colorGold"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/textViewCopyright"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@color/grey_font"
+        android:gravity="center"
+        android:textStyle="bold|italic"
+        android:textColor="@color/colorLightDark"
+        android:text="@string/copyright" />
 
 </LinearLayout>

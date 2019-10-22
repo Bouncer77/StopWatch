@@ -25,4 +25,9 @@
     <string name="title_activity_support">Помощь</string>
     <string name="volume_off">Без звука</string>
     <string name="volume_on">Звук включен</string>
+    <string name="about_autor">Разработано:\\nКосенков Иван</string>
+    <string name="donate">Поддержать проект</string>
+    <string name="feedback">Обратная связь</string>
+    <string name="special_thanks">Особая благодарность</string>
+    <string name="version">Версия: 1.0.0</string>
 </resources>

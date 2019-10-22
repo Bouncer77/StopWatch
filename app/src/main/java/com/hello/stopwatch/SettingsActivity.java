@@ -114,7 +114,9 @@ public class SettingsActivity extends AppCompatActivity {
     }
 
     public void onClickAutor(View view) {
-        showToast("Ivan Kosenkov");
+        Intent intent = new Intent(this, AboutActivity.class);
+        startActivity(intent);
+        // showToast("Ivan Kosenkov");
     }
 
     public void showToast(CharSequence text) {
