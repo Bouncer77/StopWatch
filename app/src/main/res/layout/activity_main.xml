@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorOrange"
-    tools:context=".MainActivity"
+    tools:context="com.bouncer77.firetime.MainActivity"
     android:orientation="vertical">
 
     <include

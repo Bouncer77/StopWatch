@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorOrange"
-    tools:context=".SpecialThanksActivity">
+    tools:context="com.bouncer77.firetime.SpecialThanksActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

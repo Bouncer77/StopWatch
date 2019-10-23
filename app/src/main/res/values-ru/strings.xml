@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">StopWatch</string>
+    <string name="app_name">FireTime</string>
     <string name="button_pause">Пауза</string>
     <string name="button_reset">Сброс</string>
     <string name="button_settings">Настройки</string>

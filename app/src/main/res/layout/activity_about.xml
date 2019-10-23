@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AboutActivity">
+    tools:context="com.bouncer77.firetime.AboutActivity">
 
     <include
         layout="@layout/toolbar_main"
@@ -16,11 +16,11 @@
     <ImageView
         android:id="@+id/textViewIcon"
         android:layout_gravity="center_horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="10"
         android:contentDescription="@string/app_name"
-        app:srcCompat="@drawable/ic_first_launcher" />
+        app:srcCompat="@drawable/firetime_logo_512_512" />
 
     <TextView
         android:id="@+id/textViewVersion"

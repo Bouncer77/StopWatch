@@ -1,4 +1,4 @@
-package com.hello.stopwatch;
+package com.bouncer77.firetime;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -14,9 +14,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
+import com.bouncer77.firetime.R;
+
 import java.util.Locale;
 
-import static com.hello.stopwatch.SettingsActivity.*;
+import static com.bouncer77.firetime.SettingsActivity.*;
 import static java.util.Locale.getDefault;
 
 public class MainActivity extends AppCompatActivity {

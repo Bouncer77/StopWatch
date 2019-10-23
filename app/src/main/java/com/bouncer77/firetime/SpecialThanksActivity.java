@@ -1,10 +1,12 @@
-package com.hello.stopwatch;
+package com.bouncer77.firetime;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
+
+import com.bouncer77.firetime.R;
 
 public class SpecialThanksActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.hello.stopwatch;
+package com.bouncer77.firetime;
 
 import android.content.Context;
 
@@ -22,6 +22,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.hello.stopwatch", appContext.getPackageName());
+        assertEquals("com.bouncer77.stopwatch", appContext.getPackageName());
     }
 }

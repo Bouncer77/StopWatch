@@ -1,4 +1,4 @@
-package com.hello.stopwatch;
+package com.bouncer77.firetime;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,7 +9,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
+
+import com.bouncer77.firetime.R;
 
 public class SupportActivity extends AppCompatActivity {
 

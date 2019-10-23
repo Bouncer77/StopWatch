@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.hello.stopwatch">
+    package="com.bouncer77.firetime">
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/ic_first_launcher"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SpecialThanksActivity"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".AboutActivity"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".MainActivity">
+        <activity android:name="com.bouncer77.firetime.SpecialThanksActivity"
+            android:parentActivityName="com.bouncer77.firetime.MainActivity"/>
+        <activity android:name="com.bouncer77.firetime.AboutActivity"
+            android:parentActivityName="com.bouncer77.firetime.MainActivity"/>
+        <activity android:name="com.bouncer77.firetime.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,12 +21,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SettingsActivity"
+            android:name="com.bouncer77.firetime.SettingsActivity"
             android:label="@string/title_activity_settings" />
         <activity
-            android:name=".SupportActivity"
+            android:name="com.bouncer77.firetime.SupportActivity"
             android:label="@string/title_activity_support"
-            android:parentActivityName=".MainActivity" />
+            android:parentActivityName="com.bouncer77.firetime.MainActivity" />
     </application>
 
 </manifest>

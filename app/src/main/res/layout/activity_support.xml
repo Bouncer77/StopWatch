@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/colorOrange"
     android:orientation="vertical"
-    tools:context=".SupportActivity">
+    tools:context="com.bouncer77.firetime.SupportActivity">
 
     <include
         layout="@layout/toolbar_main"

@@ -1,4 +1,4 @@
-package com.hello.stopwatch;
+package com.bouncer77.firetime;
 
 import org.junit.Test;
 

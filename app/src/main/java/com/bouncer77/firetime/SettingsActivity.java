@@ -1,4 +1,4 @@
-package com.hello.stopwatch;
+package com.bouncer77.firetime;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+
+import com.bouncer77.firetime.R;
 
 public class SettingsActivity extends AppCompatActivity {
 
