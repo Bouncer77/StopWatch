@@ -21,7 +21,7 @@
         android:layout_height="0dp"
         android:layout_weight="10"
         android:contentDescription="@string/app_name"
-        app:srcCompat="@drawable/ic_logo5_512_512" />
+        app:srcCompat="@drawable/ic_logo9" />
 
     <TextView
         android:id="@+id/textViewVersion"

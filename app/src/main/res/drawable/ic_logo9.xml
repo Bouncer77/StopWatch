@@ -1,4 +1,4 @@
-<adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android"
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:aapt="http://schemas.android.com/aapt"
     android:width="512dp"
     android:height="512dp"
@@ -53,4 +53,4 @@
   <path
       android:pathData="M229.71,208.5h71.72v23.9h-71.72z"
       android:fillColor="#FFFFFF"/>
-</adaptive-icon>
+</vector>
