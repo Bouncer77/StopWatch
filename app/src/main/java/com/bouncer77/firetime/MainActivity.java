@@ -14,8 +14,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
 
-import com.bouncer77.firetime.R;
-
 import java.util.Locale;
 
 import static com.bouncer77.firetime.SettingsActivity.*;
@@ -33,8 +31,8 @@ public class MainActivity extends AppCompatActivity {
     private int spinnerlang = 0; // TODO написать номер языка в спинере настроки
     private ToggleButton toggleButtonStartPause;
     private Button buttonReset;
-    private boolean mute = false;
-    private boolean lock = false;
+    private boolean isMute = false;
+    private boolean isLock = false;
 
     private static int nstart = 0; // число нажатий на старт
 
@@ -62,6 +60,9 @@ public class MainActivity extends AppCompatActivity {
     public static final String WASRUN = "wasRunning"; // флаг отсчета времени до приостановки активности
     public static final String SEC = "seconds";
     public static final String MSEC = "milliseconds";
+    public static final String ISLOCK = "lockStatus";
+    public static final String ISMUTE = "muteStatus";
+
 
     @Override
     protected void onRestoreInstanceState(Bundle savedInstanceState) {
@@ -73,6 +74,17 @@ public class MainActivity extends AppCompatActivity {
         milliseconds_timer = savedInstanceState.getInt(MSEC);
         isRunning = savedInstanceState.getBoolean(ISRUN);
         wasRunning = savedInstanceState.getBoolean(WASRUN);
+        isLock = savedInstanceState.getBoolean(ISLOCK);
+        isMute = savedInstanceState.getBoolean(ISMUTE);
+
+        ImageView imageViewLock = (ImageView) findViewById(R.id.imageViewLock);
+        ImageView imageViewMute = (ImageView) findViewById(R.id.imageViewVolume);
+        if (isLock) {
+            imageViewLock.setImageDrawable(getResources().getDrawable(R.drawable.ic_lock_red_48dp));
+        }
+        if (isMute) {
+            imageViewMute.setImageDrawable(getResources().getDrawable(R.drawable.ic_volume_off_red_48dp));
+        }
     }
 
     protected void onRestoreExtrasSettings(Bundle bundle) {
@@ -118,6 +130,8 @@ public class MainActivity extends AppCompatActivity {
         textViewSettingsInfo = (TextView) findViewById(R.id.textViewSettingsInfo);
 
 
+
+
         // Получение интента с настройками
         Bundle extrasSettings = getIntent().getExtras(); // из активности настройки
         onRestoreExtrasSettings(extrasSettings);
@@ -133,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
         runTimer();
     }
 
+
     // Сохранить состояние секундомера,
     //если он готовится к уничтожению.
     @Override
@@ -142,6 +157,8 @@ public class MainActivity extends AppCompatActivity {
         outState.putInt(MSEC, milliseconds_timer);
         outState.putBoolean(ISRUN, isRunning);
         outState.putBoolean(WASRUN, wasRunning);
+        outState.putBoolean(ISLOCK, isLock);
+        outState.putBoolean(ISMUTE, isMute);
     }
 
     // Обновление показателей таймера
@@ -198,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onClickOpenSettings(View view) {
-        if (lock) return;
+        if (isLock) return;
         Intent intent = new Intent(this, SettingsActivity.class);
         intent.putExtra(SWBACKGROUND, !background_running);
         intent.putExtra(SWPAUSE, !paused_running);
@@ -217,7 +234,7 @@ public class MainActivity extends AppCompatActivity {
     public void onClickStartPauseTimer(View view) {
 
         boolean on = toggleButtonStartPause.isChecked();
-        if (lock) {
+        if (isLock) {
             //TODO проблема лишнего нажатия на кнопку при запуск->блокировка->пауза->снятиеблокировки->"!старт
             if (on) {
                 toggleButtonStartPause.setText(getString(R.string.remove_lock));
@@ -228,14 +245,14 @@ public class MainActivity extends AppCompatActivity {
         }
         if (on) {
             // Вкл
-            if (!mute) startSound.start();
+            if (!isMute) startSound.start();
             toggleButtonStartPause.setButtonDrawable(R.drawable.ic_pause_48dp);
             toggleButtonStartPause.setTextColor(getResources().getColor(R.color.colorRed));
             isRunning = true;
             showToast(getString(R.string.button_start));
         } else {
             // Выкл
-            if (!mute) pauseSound.start();
+            if (!isMute) pauseSound.start();
             toggleButtonStartPause.setButtonDrawable(R.drawable.ic_play_48dp);
             toggleButtonStartPause.setTextColor(getResources().getColor(R.color.colorGreen));
             isRunning = false;
@@ -244,9 +261,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickResetTimer(View view) {
-        if (lock) return;
+        if (isLock) return;
         isRunning = false;
-        if (!mute) resetSound.start();
+        if (!isMute) resetSound.start();
         seconds = 0;
         milliseconds_timer = 0;
         showToast(getString(R.string.button_reset));
@@ -299,29 +316,29 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void onClickVolumeUpOff(View view) {
-        if (lock) return;
+        if (isLock) return;
         ImageView imageView = (ImageView) view;
-        if (mute) {
+        if (isMute) {
             imageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_volume_up_white_48dp));
             showToast(getString(R.string.volume_on));
-            mute = false;
+            isMute = false;
         } else {
             imageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_volume_off_red_48dp));
             showToast(getString(R.string.volume_off));
-            mute = true;
+            isMute = true;
         }
     }
 
     public void onClickLockUnlock(View view) {
         ImageView imageView = (ImageView) view;
-        if (lock) {
+        if (isLock) {
             imageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_lock_open_green_48dp));
             showToast(getString(R.string.unlock));
-            lock = false;
+            isLock = false;
         } else {
             imageView.setImageDrawable(getResources().getDrawable(R.drawable.ic_lock_red_48dp));
             showToast(getString(R.string.lock));
-            lock = true;
+            isLock = true;
         }
     }
 }
