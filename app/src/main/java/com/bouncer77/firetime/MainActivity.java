@@ -8,6 +8,8 @@ import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -158,6 +160,31 @@ public class MainActivity extends AppCompatActivity {
         runTimer();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Заполнение меню; элементы действий добавляются на пнаель приложения
+        getMenuInflater().inflate(R.menu.menu_stopwatch, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_share:
+                Intent share = new Intent(android.content.Intent.ACTION_SEND);
+                share.setType("text/plain");
+                share.putExtra(Intent.EXTRA_SUBJECT, "Total:");
+                String msg = getString(R.string.app_name);
+                msg += "\n" + getStringTime();
+                share.putExtra(Intent.EXTRA_TEXT, msg);
+                startActivity(Intent.createChooser(share, "Share link!"));
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 
     // Сохранить состояние секундомера,
     //если он готовится к уничтожению.
@@ -183,18 +210,8 @@ public class MainActivity extends AppCompatActivity {
         handler.post(new Runnable() {
             @Override
             public void run() {
-                int hours = seconds / 3600;
-                int minutes = (seconds % 3600) / 60;
-                int secs = seconds % 60;
 
-                String time;
-                if (show_milliseconds) {
-                    time = String.format(getDefault(), "%d:%02d:%02d:%03d",
-                            hours, minutes, secs, milliseconds_timer);
-                } else {
-                    time = String.format(getDefault(), "%d:%02d:%02d",
-                            hours, minutes, secs);
-                }
+                String time = getStringTime();
                 textViewTimer.setText(time);
 
                 if(isRunning) {
@@ -208,6 +225,22 @@ public class MainActivity extends AppCompatActivity {
                 handler.postDelayed(this, milliseconds_delta);
             }
         });
+    }
+
+    private String getStringTime() {
+        int hours = seconds / 3600;
+        int minutes = (seconds % 3600) / 60;
+        int secs = seconds % 60;
+
+        String time;
+        if (show_milliseconds) {
+            time = String.format(getDefault(), "%d:%02d:%02d.%03d",
+                    hours, minutes, secs, milliseconds_timer);
+        } else {
+            time = String.format(getDefault(), "%d:%02d:%02d",
+                    hours, minutes, secs);
+        }
+        return time;
     }
 
 
