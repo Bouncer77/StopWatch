@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -23,16 +24,17 @@ public class MainActivity extends AppCompatActivity {
 
     // Последовательность чисел
     // Первое из них — старшая версия (major), второе — младшая (minor), третья — мелкие изменения (maintenance, micro).
-    private static final String VERSION = "v0.1.0";
+    //private static final String VERSION = "v0.1.0";
 
     private TextView textViewTimer;
     private TextView textViewSettingsInfo;
     private String language  = Locale.getDefault().getDisplayLanguage();; // your language
     private int spinnerlang = 0; // TODO написать номер языка в спинере настроки
-    private ToggleButton toggleButtonStartPause;
+    private Button buttonStartPause;
     private Button buttonReset;
     private boolean isMute = false;
     private boolean isLock = false;
+    private boolean isPause = false; // состояние пауза, когда виден значек паузы, а время идет
 
     private static int nstart = 0; // число нажатий на старт
 
@@ -62,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
     public static final String MSEC = "milliseconds";
     public static final String ISLOCK = "lockStatus";
     public static final String ISMUTE = "muteStatus";
+    public static final String ISPause = "isPause"; // Button start, pause
 
 
     @Override
@@ -76,6 +79,15 @@ public class MainActivity extends AppCompatActivity {
         wasRunning = savedInstanceState.getBoolean(WASRUN);
         isLock = savedInstanceState.getBoolean(ISLOCK);
         isMute = savedInstanceState.getBoolean(ISMUTE);
+        isPause = savedInstanceState.getBoolean(ISPause);
+
+        Button buttonPlayPause = (Button) findViewById(R.id.button_start_pause);
+        if (isPause) {
+            buttonPlayPause.setText(getString(R.string.button_pause));
+            buttonPlayPause.setTextColor(getApplication().getResources().getColor(R.color.colorRed));
+            buttonPlayPause.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_pause_48dp, 0, 0, 0);
+        }
+
 
         ImageView imageViewLock = (ImageView) findViewById(R.id.imageViewLock);
         ImageView imageViewMute = (ImageView) findViewById(R.id.imageViewVolume);
@@ -104,8 +116,8 @@ public class MainActivity extends AppCompatActivity {
         String info = Boolean.toString(background_running) + "   " +
                 Boolean.toString(paused_running) + "   " +
                 Boolean.toString(show_milliseconds) + "   " +
-                Integer.toString(milliseconds_delta) + "   " +
-                lang + "   " + getVersion();
+                Integer.toString(milliseconds_delta);
+                //lang + "   " + getVersion();
         return info;
     }
 
@@ -125,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Получить элементы View
         textViewTimer = (TextView) findViewById(R.id.textViewTimer);
-        toggleButtonStartPause = (ToggleButton) findViewById(R.id.toggle_button_start_pause);
+        buttonStartPause = (Button) findViewById(R.id.button_start_pause);
         buttonReset = (Button) findViewById(R.id.button_reset);
         textViewSettingsInfo = (TextView) findViewById(R.id.textViewSettingsInfo);
 
@@ -141,7 +153,7 @@ public class MainActivity extends AppCompatActivity {
         textViewSettingsInfo.setText(settingsInfo);
 
         // При первом запуске отрисовка иконки на кнопке Start
-        if(nstart == 0) toggleButtonStartPause.setButtonDrawable(R.drawable.ic_play_48dp);
+        //if(nstart == 0) toggleButtonStartPause.setButtonDrawable(R.drawable.ic_play_48dp);
 
         // Обновление секундомера
         runTimer();
@@ -159,6 +171,7 @@ public class MainActivity extends AppCompatActivity {
         outState.putBoolean(WASRUN, wasRunning);
         outState.putBoolean(ISLOCK, isLock);
         outState.putBoolean(ISMUTE, isMute);
+        outState.putBoolean(ISPause, isPause);
     }
 
     // Обновление показателей таймера
@@ -233,7 +246,29 @@ public class MainActivity extends AppCompatActivity {
 
     public void onClickStartPauseTimer(View view) {
 
-        boolean on = toggleButtonStartPause.isChecked();
+        if (isLock) return;
+
+        Button buttonPlayPause = (Button) view;
+        if (isPause) {
+            isPause = false;
+            isRunning = false;
+            if (!isMute) pauseSound.start();
+            showToast(getString(R.string.button_pause));
+            buttonPlayPause.setText(getString(R.string.button_start));
+            //buttonPlayPause.setTextColor(getColor(R.color.colorPrimary)); // API 23
+            buttonPlayPause.setTextColor(getApplication().getResources().getColor(R.color.colorGreen));
+            buttonPlayPause.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_play_48dp, 0, 0, 0);
+        } else {
+            isPause = true;
+            isRunning = true;
+            if (!isMute) startSound.start();
+            showToast(getString(R.string.button_start));
+            buttonPlayPause.setText(getString(R.string.button_pause));
+            buttonPlayPause.setTextColor(getApplication().getResources().getColor(R.color.colorRed));
+            buttonPlayPause.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_pause_48dp, 0, 0, 0);
+        }
+
+        /*boolean on = toggleButtonStartPause.isChecked();
         if (isLock) {
             //TODO проблема лишнего нажатия на кнопку при запуск->блокировка->пауза->снятиеблокировки->"!старт
             if (on) {
@@ -242,8 +277,9 @@ public class MainActivity extends AppCompatActivity {
                 toggleButtonStartPause.setText(getString(R.string.remove_lock));
             }
             return;
-        }
-        if (on) {
+        }*/
+
+        /*if (isStop) {
             // Вкл
             if (!isMute) startSound.start();
             toggleButtonStartPause.setButtonDrawable(R.drawable.ic_pause_48dp);
@@ -257,7 +293,7 @@ public class MainActivity extends AppCompatActivity {
             toggleButtonStartPause.setTextColor(getResources().getColor(R.color.colorGreen));
             isRunning = false;
             showToast(getString(R.string.button_pause));
-        }
+        }*/
     }
 
     public void onClickResetTimer(View view) {
@@ -269,14 +305,21 @@ public class MainActivity extends AppCompatActivity {
         showToast(getString(R.string.button_reset));
 
         // Привести кнопку-переключатель в исходное состояние
-        toggleButtonStartPause.setChecked(false);
+        isPause = false;
+        Button buttonPlayPause = (Button) findViewById(R.id.button_start_pause);
+        buttonPlayPause.setText(getString(R.string.button_start));
+        //buttonPlayPause.setTextColor(getColor(R.color.colorPrimary)); // API 23
+        buttonPlayPause.setTextColor(getApplication().getResources().getColor(R.color.colorGreen));
+        buttonPlayPause.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_play_48dp, 0, 0, 0);
+
+        /*toggleButtonStartPause.setChecked(false);
         toggleButtonStartPause.setButtonDrawable(R.drawable.ic_play_48dp);
-        toggleButtonStartPause.setTextColor(getResources().getColor(R.color.colorGreen));
+        toggleButtonStartPause.setTextColor(getResources().getColor(R.color.colorGreen));*/
     }
 
-    public static String getVersion() {
+    /*public static String getVersion() {
         return VERSION;
-    }
+    }*/
 
     @Override
     protected void onStart(){

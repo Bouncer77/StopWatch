@@ -99,7 +99,8 @@ public class SettingsActivity extends AppCompatActivity {
 
     public void onClickShare(View view) {
         String msg = getString(R.string.app_name);
-        msg += "   " + MainActivity.getVersion() + "\nSent from Android OS";
+        // TODO версия из gradle
+        //msg += "   " + MainActivity.getVersion() + "\nSent from Android OS";
         Intent intent = new Intent(Intent.ACTION_SEND);
         intent.setType("text/plain");
         intent.putExtra(Intent.EXTRA_TEXT, msg);

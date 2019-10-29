@@ -26,8 +26,9 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ToggleButton
-        android:id="@+id/toggle_button_start_pause"
+    <Button
+        android:id="@+id/button_start_pause"
+        android:drawableStart="@drawable/ic_play_48dp"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -35,8 +36,7 @@
         android:background="@color/colorOrange"
         android:onClick="onClickStartPauseTimer"
         android:textColor="@color/colorGreen"
-        android:textOff="@string/button_start"
-        android:textOn="@string/button_pause"
+        android:text="@string/button_start"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintTop_toBottomOf="@+id/textViewTimer" />
@@ -55,7 +55,7 @@
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="@+id/imageViewSettings"
-        app:layout_constraintTop_toBottomOf="@+id/toggle_button_start_pause" />
+        app:layout_constraintTop_toBottomOf="@+id/button_start_pause" />
 
 
     <LinearLayout
