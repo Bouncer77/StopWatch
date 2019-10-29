@@ -10,6 +10,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bouncer77.firetime.R;
 
@@ -40,5 +41,12 @@ public class AboutActivity extends AppCompatActivity {
     public void onClickShowThanksActivity(View view) {
         Intent intent = new Intent(this, SpecialThanksActivity.class);
         startActivity(intent);
+    }
+
+    public void onClickDonate(View view) {
+        int duraction = Toast.LENGTH_SHORT;
+        String text = getString(R.string.vote_in_developing);
+        Toast toast = Toast.makeText(this, text, duraction);
+        toast.show();
     }
 }

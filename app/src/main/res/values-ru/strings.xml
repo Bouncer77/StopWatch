@@ -17,7 +17,6 @@
     <string name="support_button_send">Отправить</string>
     <string name="support_msg_hint">Сообщение</string>
     <string name="support_email_subject_hint">Тема</string>
-    <string name="settings_about_author">автор</string>
     <string name="settings_share">поделиться</string>
     <string name="settings_support">написать в техподдержку</string>
     <string name="settings_vote">проголосовать</string>
@@ -29,7 +28,6 @@
     <string name="donate">Поддержать проект</string>
     <string name="feedback">Обратная связь</string>
     <string name="special_thanks">Особая благодарность</string>
-    <string name="version">Версия: 1.0.0</string>
     <string name="tag_illuminati">Иллюминат</string>
     <string name="tag_investor">Инвестр</string>
     <string name="tag_spiritual_mentor">Духовный наставник</string>
@@ -40,4 +38,8 @@
     <string name="lock">Запереть</string>
     <string name="unlock">Отпереть</string>
     <string name="remove_lock">Снимите замок</string>
+    <string name="settings_about_program">О программе</string>
+    <string name="title_stopWatch">FireTime - Секундомер</string>
+    <string name="share_recommend">Рекомендую приложение Fire Time для Андроид</string>
+    <string name="vote_in_developing">В разработке</string>
 </resources>
