@@ -51,23 +51,39 @@
     <string name="tag_famous_hero">Famous hero</string>
     <string name="lock">lock</string>
     <string name="unlock">unlock</string>
-    
-    
+
+
     <string name="illuminati" translatable="false">Marina Fox</string>
     <string name="spiritual_mentor" translatable="false">Natalia Journal</string>
     <string name="investor" translatable="false">Igor Moscow77777</string>
     <string name="supreme_master" translatable="false"> </string>
     <string name="wise_consul" translatable="false"> </string>
     <string name="famous_hero" translatable="false"> </string>
-    
+
     <string name="remove_lock">Remove the lock</string>
     <string name="feedback_url" translatable="false">https://feedback.userreport.com/2ddf9e80-cddd-40a2-aa5d-a61d00b03d22/</string>
-
 
 
     <string-array name="spiner_select_language">
         <item>@string/lang_en</item>
         <item>@string/lang_ru</item>
     </string-array>
+
+    <string name="title_top" translatable="false">Top fragment</string>
+    <string-array name="pizzas">
+        <item>Diavolo</item>
+        <item>Funghi</item>
+    </string-array>
+
+    <string-array name="pasta">
+        <item>Spaghetti Bolognese</item>
+        <item>Lasagne</item>
+    </string-array>
+
+    <string-array name="stores">
+        <item>Cambridge</item>
+        <item>Sebastopol</item>
+    </string-array>
+
 
 </resources>

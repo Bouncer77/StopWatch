@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView textViewTimer;
     private TextView textViewSettingsInfo;
     private String language  = Locale.getDefault().getDisplayLanguage();; // your language
-    private int spinnerlang = 0; // TODO написать номер языка в спинере настроки
+    //private int spinnerlang = 0; // TODO написать номер языка в спинере настроки
     private Button buttonStartPause;
     private Button buttonReset;
     private boolean isMute = false;
