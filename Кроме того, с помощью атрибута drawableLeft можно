@@ -1,0 +1,5 @@
+Кроме того, с помощью атрибута drawableLeft можно добавить изображение к нашей кнопке, в том числе и векторное. На старых устройствах, векторные изображения  вызывают падение всего приложения, поэтому  сделаем это программно в коде активности при помощи AppCompatResources:
+((Button) findViewById(R.id.btn_email_password)).setCompoundDrawablesWithIntrinsicBounds(
+    AppCompatResources.getDrawable(this, R.drawable.ic_vpn_key_black_24dp), null, null, null);
+
+Метод setCompoundDrawablesWithIntrinsicBounds() делает то же, что и атрибуты drawableLeft, drawableTop и так далее. В качестве параметров нужно указать, где именно будет размещаться изображение (указываем null в случае, если здесь изображение не нужно).
