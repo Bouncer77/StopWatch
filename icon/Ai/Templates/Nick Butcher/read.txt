@@ -1,0 +1,46 @@
+https://medium.com/google-design/designing-adaptive-icons-515af294c783
+https://medium.com/androiddevelopers/implementing-adaptive-icons-1e4d1795470e
+
+1. Adaptive icon preview tool
+	https://adapticon.tooo.io/
+
+2.Affinity Designer template
+https://cyrilmottier.com/2017/07/06/adaptive-icon-template/
+
+3. Bjango templates include adaptive icons
+https://github.com/bjango/Bjango-Templates
+
+4. Figma template (requires login)
+https://www.uplabs.com/posts/adaptive-icon-sticker-sheet
+
+5. Adobe XD template
+https://www.uplabs.com/posts/adaptive-icon-sticker-sheet
+
+
+Приложене для проверки значков
+https://github.com/nickbutcher/AdaptiveIconPlayground/releases
+
+Сылки
+https://material.io/design/iconography/#specs
+
+Тестирование иконок
+http://www.icontester.com/
+
+
+https://www.fandroid.info/poleznye-ssylki-i-resursy-android-razrabotchika/
+
+https://material.io/design/introduction/#
+https://css-live.ru/articles/materialnyj-dizajn-vvedenie.html
+
+
+<adaptive-icon>
+  <background android:drawable="@[drawable|mipmap|color]/bar"/>
+  <foreground android:drawable="@[drawable|mipmap|color]/foo"/>
+</adaptive-icon>
+
+Градиент https://medium.com/androiddevelopers/vectordrawable-adaptive-icons-3fed3d3205b5
+
+
+
+
+
